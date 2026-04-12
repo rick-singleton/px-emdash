@@ -1,16 +1,32 @@
 /**
  * @flash/site-blocks — Per-site custom block types
  *
- * This plugin is a TEMPLATE. On deploy, Flash writes custom block type
- * registrations here if the page builder designed novel types for this site.
- * For assembly-mode deploys (all standard types), this plugin stays empty.
+ * Two exports:
+ * - flashSiteBlocks() — PluginDescriptor for astro.config (build-time metadata)
+ * - createPlugin() — ResolvedPlugin via definePlugin() (runtime implementation)
  *
- * Custom types that prove useful across sites get promoted to @flash/block-library.
+ * This plugin is a TEMPLATE. At deploy time, Flash populates the
+ * portableTextBlocks array with custom types for the specific site.
+ * For assembly-mode deploys (all standard types), this stays empty.
  */
 
 import { definePlugin } from "emdash";
 
+/**
+ * Build-time descriptor — goes into plugins: [] in astro.config.mjs.
+ */
 export function flashSiteBlocks() {
+	return {
+		id: "flash-site-blocks",
+		version: "0.1.0",
+		entrypoint: "@flash/site-blocks",
+	};
+}
+
+/**
+ * Runtime implementation — imported by the virtual module at build time.
+ */
+export function createPlugin(_options: Record<string, unknown> = {}) {
 	return definePlugin({
 		id: "flash-site-blocks",
 		version: "0.1.0",

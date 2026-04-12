@@ -1,18 +1,34 @@
 /**
  * @flash/block-library — Curated block type library for Flash sites
  *
- * Registers Portable Text block types with EmDash:
- * - admin.portableTextBlocks → editor UI (Block Kit fields)
- * - componentsEntry → rendering components (Astro)
+ * Two exports:
+ * - flashBlockLibrary() — PluginDescriptor for astro.config (build-time metadata)
+ * - createPlugin() — ResolvedPlugin via definePlugin() (runtime implementation)
  */
 
 import { definePlugin } from "emdash";
 
+/**
+ * Build-time descriptor — goes into plugins: [] in astro.config.mjs.
+ * Returns metadata only. No definePlugin() call.
+ */
 export function flashBlockLibrary() {
+	return {
+		id: "flash-block-library",
+		version: "0.1.0",
+		entrypoint: "@flash/block-library",
+		componentsEntry: "@flash/block-library/block-components",
+	};
+}
+
+/**
+ * Runtime implementation — imported by the virtual module at build time.
+ * Called as createPlugin({}) by the generated code.
+ */
+export function createPlugin(_options: Record<string, unknown> = {}) {
 	return definePlugin({
 		id: "flash-block-library",
 		version: "0.1.0",
-		componentsEntry: "@flash/block-library/block-components",
 		admin: {
 			portableTextBlocks: [
 				{
