@@ -1,0 +1,7 @@
+# Files/directories Flash is allowed to modify in px-emdash.
+# Everything else is upstream EmDash — read-only.
+# Pre-commit hook rejects changes outside these paths.
+packages/plugins/flash-block-library/
+packages/plugins/flash-site-blocks/
+templates/flash-marketing/
+.flash/
