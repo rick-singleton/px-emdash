@@ -1,0 +1,31 @@
+---
+const { headline, body, image, imagePosition, cta } = Astro.props.node;
+const isRight = imagePosition === "right";
+---
+<section id="about" class="section">
+  <div class="container" style={`display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-3xl); align-items: center;`}>
+    <div style={`${isRight ? "order: 1;" : "order: 2;"}`}>
+      {image && (
+        <img src={image} alt={headline} style="width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);" />
+      )}
+    </div>
+    <div style={`${isRight ? "order: 2;" : "order: 1;"}`}>
+      <h2 style="font-size: var(--font-size-3xl); font-weight: 700; color: var(--color-text); margin-bottom: var(--spacing-md);">
+        {headline}
+      </h2>
+      <div style="font-size: var(--font-size-lg); color: var(--color-muted); line-height: 1.8; margin-bottom: var(--spacing-xl);">
+        {body}
+      </div>
+      {cta && (
+        <a href={cta.url} class="btn btn-primary">{cta.label}</a>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 768px) {
+    section > div { grid-template-columns: 1fr !important; }
+    section > div > div { order: unset !important; }
+  }
+</style>

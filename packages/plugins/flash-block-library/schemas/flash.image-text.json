@@ -1,0 +1,35 @@
+{
+    "type": "flash.image-text",
+    "fields": {
+        "headline": {
+            "type": "string",
+            "required": true
+        },
+        "body": {
+            "type": "text",
+            "required": true
+        },
+        "image": {
+            "type": "image"
+        },
+        "imagePosition": {
+            "type": "string",
+            "enum": [
+                "left",
+                "right"
+            ],
+            "default": "left"
+        },
+        "cta": {
+            "type": "object",
+            "fields": {
+                "label": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "url"
+                }
+            }
+        }
+    }
+}

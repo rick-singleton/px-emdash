@@ -1,0 +1,39 @@
+{
+    "type": "flash.hero",
+    "fields": {
+        "headline": {
+            "type": "string",
+            "required": true
+        },
+        "subheadline": {
+            "type": "string"
+        },
+        "primaryCta": {
+            "type": "object",
+            "fields": {
+                "label": {
+                    "type": "string",
+                    "required": true
+                },
+                "url": {
+                    "type": "url",
+                    "required": true
+                }
+            }
+        },
+        "secondaryCta": {
+            "type": "object",
+            "fields": {
+                "label": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "url"
+                }
+            }
+        },
+        "backgroundImage": {
+            "type": "image"
+        }
+    }
+}

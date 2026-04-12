@@ -1,0 +1,25 @@
+{
+    "type": "flash.cta-banner",
+    "fields": {
+        "headline": {
+            "type": "string",
+            "required": true
+        },
+        "subheadline": {
+            "type": "string"
+        },
+        "cta": {
+            "type": "object",
+            "fields": {
+                "label": {
+                    "type": "string",
+                    "required": true
+                },
+                "url": {
+                    "type": "url",
+                    "required": true
+                }
+            }
+        }
+    }
+}

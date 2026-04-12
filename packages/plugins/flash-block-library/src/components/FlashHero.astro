@@ -1,0 +1,29 @@
+---
+const { headline, subheadline, primaryCta, secondaryCta, backgroundImage } = Astro.props.node;
+---
+<section id="hero" class="section" style="position: relative; min-height: 80vh; display: flex; align-items: center; overflow: hidden;">
+  {backgroundImage && (
+    <div style="position: absolute; inset: 0; z-index: 0;">
+      <img src={backgroundImage} alt={headline} style="width: 100%; height: 100%; object-fit: cover;" />
+      <div style="position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.4));"></div>
+    </div>
+  )}
+  <div class="container" style={`position: relative; z-index: 1; ${backgroundImage ? "color: white;" : ""}`}>
+    <h1 style={`font-size: var(--font-size-5xl); font-weight: 800; margin-bottom: var(--spacing-md); letter-spacing: -0.02em; ${!backgroundImage ? "color: var(--color-text);" : ""}`}>
+      {headline}
+    </h1>
+    {subheadline && (
+      <p style={`font-size: var(--font-size-xl); max-width: 640px; margin-bottom: var(--spacing-xl); opacity: 0.9; ${!backgroundImage ? "color: var(--color-muted);" : ""}`}>
+        {subheadline}
+      </p>
+    )}
+    <div style="display: flex; flex-wrap: wrap; gap: var(--spacing-md);">
+      {primaryCta && (
+        <a href={primaryCta.url} class="btn btn-primary btn-lg">{primaryCta.label}</a>
+      )}
+      {secondaryCta && (
+        <a href={secondaryCta.url} class="btn btn-secondary btn-lg">{secondaryCta.label}</a>
+      )}
+    </div>
+  </div>
+</section>

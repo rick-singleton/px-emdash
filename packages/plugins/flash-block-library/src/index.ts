@@ -1,11 +1,9 @@
 /**
  * @flash/block-library — Curated block type library for Flash sites
  *
- * Registers all standard Portable Text block types with EmDash.
- * Each block type has an Astro rendering component + admin editor fields.
- *
- * This plugin ships with every Flash site. It IS the design system.
- * AI agents use the block type catalog for assembly and editing.
+ * Registers Portable Text block types with EmDash:
+ * - admin.portableTextBlocks → editor UI (Block Kit fields)
+ * - componentsEntry → rendering components (Astro)
  */
 
 import { definePlugin } from "emdash";
@@ -14,11 +12,84 @@ export function flashBlockLibrary() {
 	return definePlugin({
 		id: "flash-block-library",
 		version: "0.1.0",
+		componentsEntry: "@flash/block-library/block-components",
 		admin: {
 			portableTextBlocks: [
-				// Block types will be registered here as they are built in P3.
-				// Each entry: { type, label, icon, description, fields }
-				// See /root/FLASH_BLOCK_ARCHITECTURE.md for the full tier list.
+				{
+					type: "flash.hero",
+					label: "Hero Section",
+					icon: "layout",
+					description: "Full-width hero with headline, CTA, and optional background image",
+					fields: [
+						{ type: "text_input", action_id: "headline", label: "Headline" },
+						{ type: "text_input", action_id: "subheadline", label: "Subheadline" },
+						{ type: "text_input", action_id: "primaryCta.label", label: "Primary CTA Label" },
+						{ type: "text_input", action_id: "primaryCta.url", label: "Primary CTA URL", placeholder: "https://... or tel:..." },
+						{ type: "text_input", action_id: "secondaryCta.label", label: "Secondary CTA Label" },
+						{ type: "text_input", action_id: "secondaryCta.url", label: "Secondary CTA URL" },
+						{ type: "text_input", action_id: "backgroundImage", label: "Background Image URL" },
+					],
+				},
+				{
+					type: "flash.services-grid",
+					label: "Services Grid",
+					icon: "grid-four",
+					description: "Card grid with icons, titles, and descriptions",
+					fields: [
+						{ type: "text_input", action_id: "headline", label: "Headline" },
+						{ type: "text_input", action_id: "subheadline", label: "Subheadline" },
+					],
+				},
+				{
+					type: "flash.image-text",
+					label: "Image + Text",
+					icon: "columns",
+					description: "Split section with image on one side and text on the other",
+					fields: [
+						{ type: "text_input", action_id: "headline", label: "Headline" },
+						{ type: "text_input", action_id: "body", label: "Body Text", multiline: true },
+						{ type: "text_input", action_id: "image", label: "Image URL" },
+						{ type: "select", action_id: "imagePosition", label: "Image Position", options: [
+							{ label: "Left", value: "left" },
+							{ label: "Right", value: "right" },
+						]},
+						{ type: "text_input", action_id: "cta.label", label: "CTA Label" },
+						{ type: "text_input", action_id: "cta.url", label: "CTA URL" },
+					],
+				},
+				{
+					type: "flash.contact-form",
+					label: "Contact Form",
+					icon: "envelope",
+					description: "Contact section with phone, email, address, and form",
+					fields: [
+						{ type: "text_input", action_id: "headline", label: "Headline" },
+						{ type: "text_input", action_id: "subheadline", label: "Subheadline" },
+						{ type: "text_input", action_id: "phone", label: "Phone Number" },
+						{ type: "text_input", action_id: "email", label: "Email Address" },
+						{ type: "text_input", action_id: "address", label: "Address", multiline: true },
+						{ type: "text_input", action_id: "formId", label: "EmDash Form ID" },
+					],
+				},
+				{
+					type: "flash.cta-banner",
+					label: "CTA Banner",
+					icon: "megaphone",
+					description: "Full-width call-to-action strip with gradient background",
+					fields: [
+						{ type: "text_input", action_id: "headline", label: "Headline" },
+						{ type: "text_input", action_id: "subheadline", label: "Subheadline" },
+						{ type: "text_input", action_id: "cta.label", label: "CTA Label" },
+						{ type: "text_input", action_id: "cta.url", label: "CTA URL" },
+					],
+				},
+				{
+					type: "flash.stats-row",
+					label: "Stats Row",
+					icon: "chart-bar",
+					description: "Number counters for key metrics",
+					fields: [],
+				},
 			],
 		},
 	});

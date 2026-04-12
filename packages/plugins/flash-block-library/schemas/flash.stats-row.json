@@ -1,0 +1,22 @@
+{
+    "type": "flash.stats-row",
+    "fields": {
+        "stats": {
+            "type": "array",
+            "required": true,
+            "items": {
+                "type": "object",
+                "fields": {
+                    "value": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "label": {
+                        "type": "string",
+                        "required": true
+                    }
+                }
+            }
+        }
+    }
+}

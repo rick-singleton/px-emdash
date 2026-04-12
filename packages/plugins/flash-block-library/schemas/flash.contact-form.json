@@ -1,0 +1,24 @@
+{
+    "type": "flash.contact-form",
+    "fields": {
+        "headline": {
+            "type": "string",
+            "required": true
+        },
+        "subheadline": {
+            "type": "string"
+        },
+        "phone": {
+            "type": "string"
+        },
+        "email": {
+            "type": "string"
+        },
+        "address": {
+            "type": "text"
+        },
+        "formId": {
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,30 @@
+---
+const { stats } = Astro.props.node;
+---
+<section id="stats" class="section" style="background: var(--color-surface); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+  <div class="container">
+    {stats && (
+      <div style={`display: grid; grid-template-columns: repeat(${Math.min(stats.length, 4)}, 1fr); gap: var(--spacing-xl); text-align: center;`}>
+        {stats.map((stat: { value: string; label: string }) => (
+          <div>
+            <div style="font-size: var(--font-size-4xl); font-weight: 800; color: var(--color-primary); letter-spacing: -0.02em; margin-bottom: var(--spacing-xs);">
+              {stat.value}
+            </div>
+            <div style="font-size: var(--font-size-sm); font-weight: 500; color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.05em;">
+              {stat.label}
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  @media (max-width: 768px) {
+    section > div > div { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+  @media (max-width: 480px) {
+    section > div > div { grid-template-columns: 1fr !important; }
+  }
+</style>

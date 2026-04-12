@@ -1,0 +1,31 @@
+{
+    "type": "flash.services-grid",
+    "fields": {
+        "headline": {
+            "type": "string",
+            "required": true
+        },
+        "subheadline": {
+            "type": "string"
+        },
+        "services": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "fields": {
+                    "icon": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "description": {
+                        "type": "string",
+                        "required": true
+                    }
+                }
+            }
+        }
+    }
+}
