@@ -1,0 +1,51 @@
+---
+/**
+ * Dynamic catch-all route for Flash sites.
+ * Reads page content from D1 via EmDash, renders Portable Text blocks.
+ * Plugin-provided block components (flash.hero, flash.services-grid, etc.)
+ * auto-merge via the virtual module — no manual component map needed.
+ */
+import { getEmDashEntry, getEmDashEntries } from "emdash";
+import { PortableText } from "emdash/ui";
+import Base from "../layouts/Base.astro";
+
+export const prerender = false;
+
+const slug = Astro.params.slug || "home";
+
+const { entry: page, cacheHint } = await getEmDashEntry("pages", slug);
+
+if (!page) {
+	return Astro.redirect("/404");
+}
+
+try {
+	Astro.cache.set(cacheHint);
+} catch {}
+
+const pageTitle = page.data.title;
+const pageContent = page.data.content;
+---
+
+<Base title={pageTitle !== "Home" ? pageTitle : undefined}>
+	{pageContent ? (
+		<PortableText value={pageContent} />
+	) : (
+		<div class="empty-state">
+			<h1>Page has no content</h1>
+			<p>Add content blocks in the admin panel.</p>
+			<a href="/_emdash/admin" class="btn btn-primary">Open Admin</a>
+		</div>
+	)}
+</Base>
+
+<style>
+	.empty-state {
+		text-align: center;
+		padding: var(--spacing-5xl) var(--spacing-lg);
+		max-width: var(--max-width);
+		margin: 0 auto;
+	}
+	.empty-state h1 { margin-bottom: var(--spacing-md); }
+	.empty-state p { color: var(--color-muted); margin-bottom: var(--spacing-xl); }
+</style>

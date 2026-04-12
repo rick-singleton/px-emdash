@@ -1,0 +1,46 @@
+{
+	"$schema": "https://emdashcms.com/seed.schema.json",
+	"version": "1",
+	"meta": {
+		"name": "Flash Marketing",
+		"description": "Marketing site template for Plexa Flash",
+		"author": "Plexa"
+	},
+	"settings": {
+		"title": "Flash Site",
+		"tagline": ""
+	},
+	"collections": [
+		{
+			"slug": "pages",
+			"label": "Pages",
+			"labelSingular": "Page",
+			"supports": ["drafts", "revisions", "seo"],
+			"fields": [
+				{
+					"slug": "title",
+					"label": "Title",
+					"type": "string",
+					"required": true
+				},
+				{
+					"slug": "content",
+					"label": "Content",
+					"type": "portableText"
+				}
+			]
+		}
+	],
+	"menus": [
+		{
+			"name": "primary",
+			"label": "Primary Navigation",
+			"items": [
+				{ "type": "custom", "label": "Home", "url": "/" },
+				{ "type": "custom", "label": "About", "url": "/#about" },
+				{ "type": "custom", "label": "Services", "url": "/#services" },
+				{ "type": "custom", "label": "Contact", "url": "/#contact" }
+			]
+		}
+	]
+}
