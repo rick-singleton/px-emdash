@@ -5,7 +5,6 @@ import { defineConfig } from "astro/config";
 import emdash from "emdash/astro";
 import { formsPlugin } from "@emdash-cms/plugin-forms";
 import { webhookNotifierPlugin } from "@emdash-cms/plugin-webhook-notifier";
-import { flashBlockLibrary } from "@flash/block-library";
 import { flashSiteBlocks } from "@flash/site-blocks";
 
 export default defineConfig({
@@ -17,7 +16,6 @@ export default defineConfig({
 			database: d1({ binding: "DB", session: "auto" }),
 			storage: r2({ binding: "MEDIA" }),
 			plugins: [
-				flashBlockLibrary(),
 				flashSiteBlocks(),
 				formsPlugin(),
 				webhookNotifierPlugin(),
